@@ -4,7 +4,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const app = express();
+export const app = express();
 app.use(cors());
 app.use(express.json());
 
@@ -263,9 +263,11 @@ Generate a detailed Test Plan with the following sections in Markdown format:
 Be exhaustive, professional, and thorough. Start directly with the Markdown output.`;
 }
 
-const server = app.listen(PORT, () => {
-  console.log(`[TestPlanAgent API] Server listening at http://localhost:${PORT}`);
-});
+if (require.main === module) {
+  const server = app.listen(PORT, () => {
+    console.log(`[TestPlanAgent API] Server listening at http://localhost:${PORT}`);
+  });
+  server.setTimeout(600000);
+}
 
-// Avoid the server dropping the connection before the LLM finishes
-server.setTimeout(600000);
+export default app;

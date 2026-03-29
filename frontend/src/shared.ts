@@ -18,7 +18,7 @@ export interface LLMConfig {
 }
 
 // Shared constants
-export const API_BASE = 'http://localhost:3002'
+export const API_BASE = '/api'
 
 export const DEFAULT_ALM: ALMConfig = {
   type: 'jira', url: '', email: '', apiToken: '', project: ''
